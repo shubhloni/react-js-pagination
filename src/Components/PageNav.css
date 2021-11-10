@@ -1,0 +1,10 @@
+.page-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.prev,
+.next {
+  padding: 5px;
+  margin: 10px 10px;
+}
