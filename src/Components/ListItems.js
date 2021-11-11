@@ -2,13 +2,18 @@ import React from 'react';
 import ListItem from './ListItem';
 import Search from './Search';
 
-function ListItems({ facts, changeFact }) {
+function ListItems({ facts, pageCount, changeFact }) {
   return (
     <>
-      <Search />
-
-      {facts.map((fact) => {
-        return <ListItem key={fact.id} fact={fact} changeFact={changeFact} />;
+      {facts.map((fact, index) => {
+        return (
+          <ListItem
+            key={fact._id}
+            idx={pageCount !== 1 ? (pageCount - 1) * 10 + index : index}
+            fact={fact}
+            changeFact={changeFact}
+          />
+        );
       })}
     </>
   );

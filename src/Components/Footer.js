@@ -5,7 +5,10 @@ import './Footer.css';
 function Footer() {
   return (
     <div className='footer'>
-      <h1>Footer</h1>
+      <p>
+        Pagination can also be implemented at server side. So at frontend we can
+        directly fetch Facts based on pageCount.
+      </p>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import './ListItem.css';
 
-function ListItem({ fact, changeFact }) {
+function ListItem({ idx, fact, changeFact }) {
   const [editToggle, setEditToggle] = useState(true);
   const textRef = useRef(null);
 
@@ -12,30 +12,30 @@ function ListItem({ fact, changeFact }) {
 
   const saveFactHandler = () => {
     // console.log(textRef.current.value);
-    changeFact(fact.id, textRef.current.value);
+    setEditToggle(!editToggle);
+    changeFact(fact._id, textRef.current.value);
   };
 
   const deleteFactsHandler = () => {
-    changeFact(fact.id, '', true);
+    changeFact(fact._id, '', true);
   };
 
   return (
     <div className='item'>
       <div className='item-top'>
-        <label className='text-label'>Fact {fact.id}</label>
+        <label className='text-label'>Fact: {idx + 1}</label>
         <div className='text-actions'>
-          <button className='btn edit' onClick={editToggleHandler}>
-            edit
-          </button>
           {editToggle ? (
-            ''
+            <button className='btn edit' onClick={editToggleHandler}>
+              <i class='fas fa-edit'></i>
+            </button>
           ) : (
             <button className='btn save' onClick={saveFactHandler}>
-              save
+              <i class='fas fa-save'></i>
             </button>
           )}
           <button className='btn delete' onClick={deleteFactsHandler}>
-            delete
+            <i class='fas fa-trash-alt'></i>
           </button>
         </div>
       </div>
@@ -46,8 +46,6 @@ function ListItem({ fact, changeFact }) {
         className='text-area'
         ref={textRef}
         disabled={editToggle ? 1 : 0}
-        // value={fact.text}
-        // value={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, alias! Maiores ex culpa inventore quae eveniet delectus, molestias possimus debitis.`}
       >
         {fact.text}
       </textarea>

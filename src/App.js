@@ -6,143 +6,74 @@ import Footer from './Components/Footer';
 import ListItems from './Components/ListItems';
 import PageNav from './Components/PageNav';
 
-const DUMMY_FACTS = [
-  {
-    id: 'f1',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f2',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f3',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f4',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f5',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f6',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f7',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f8',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f9',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f10',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f11',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f12',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f13',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f14',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f15',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f16',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f17',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f18',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f19',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f20',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f21',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f22',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus!',
-  },
-  {
-    id: 'f23',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f24',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-  {
-    id: 'f25',
-    text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, voluptatibus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas in error eligendi ex ullam totam repudiandae quo natus eveniet.',
-  },
-];
+import Spinner from '../src/images/spinner.gif';
 
 function App() {
+  const [serverFacts, setServerFacts] = useState([]);
   const [facts, setFacts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // const initFacts = DUMMY_FACTS.slice(0, 10);
-    // setFacts(initFacts);
-    setFacts(DUMMY_FACTS);
+    // On Load
+    const getFacts = async () => {
+      const allFacts = await fetchFacts();
+      setServerFacts(allFacts);
+      setLoading(false);
+    };
+
+    getFacts();
   }, []);
 
+  // Fetch Facts From Server
+  const fetchFacts = async () => {
+    const res = await fetch(
+      'https://cat-fact.herokuapp.com/facts/random?animal_type=dog&amount=55'
+    );
+    const data = await res.json();
+
+    return data;
+  };
+
   useEffect(() => {
-    console.log(facts);
     console.log((pageCount - 1) * 10, pageCount * 10);
     // const initFacts = DUMMY_FACTS.slice((pageCount - 1) * 10, pageCount * 10);
-    const initFacts = facts.slice((pageCount - 1) * 10, pageCount * 10);
+    const initFacts = serverFacts.slice((pageCount - 1) * 10, pageCount * 10);
     setFacts(() => initFacts);
-  }, [pageCount]);
+  }, [serverFacts, pageCount]);
+
+  // Global Search
+  const searchHandler = (searchKey) => {
+    if (searchKey === '') {
+      const initFacts = serverFacts.slice((pageCount - 1) * 10, pageCount * 10);
+      setFacts(() => initFacts);
+    } else {
+      const lowerKey = searchKey.toLowerCase();
+      const searchedFacts = serverFacts.filter((fact) => {
+        if (fact.text.toLowerCase().includes(lowerKey)) {
+          return fact;
+        }
+      });
+
+      setFacts(searchedFacts);
+    }
+  };
 
   const changePageCountHandler = (direction) => {
     if (direction === 'prev' && pageCount > 1) {
       setPageCount(pageCount - 1);
-    } else if (direction === 'next' && pageCount < DUMMY_FACTS.length / 10) {
+    } else if (direction === 'next' && pageCount < serverFacts.length / 10) {
       setPageCount(pageCount + 1);
     }
   };
 
   const changeFactsHandler = (id, text = '', del = false) => {
-    // console.log(id, text);
     let newFacts = [];
 
     if (!del) {
-      // Edit item
-      newFacts = facts.map((fact) => {
-        if (fact.id === id) {
+      // Edit fact from serverFacts
+      newFacts = serverFacts.map((fact) => {
+        if (fact._id === id) {
           return {
             ...fact,
             text: text,
@@ -150,32 +81,41 @@ function App() {
         }
         return fact;
       });
+
+      setServerFacts(newFacts);
     } else {
-      // Delete Item
-      newFacts = facts.filter((fact) => {
-        if (fact.id !== id) {
+      // Delete fact from serverFacts
+      newFacts = serverFacts.filter((fact) => {
+        if (fact._id !== id) {
           return fact;
         }
       });
+      setServerFacts(newFacts);
     }
-    console.log(newFacts);
-    setFacts(newFacts);
+    // console.log(newFacts);
   };
 
   return (
-    <div className='container'>
-      <Header />
-      {facts.length > 0 && (
-        <ListItems facts={facts} changeFact={changeFactsHandler} />
-      )}
-      {facts.length === 0 && <p>No facts on this page...</p>}
-      <PageNav
-        pageCount={pageCount}
-        maxPageCount={Math.ceil(DUMMY_FACTS.length / 10)}
-        changePage={changePageCountHandler}
-      />
+    <>
+      <Header searchFact={searchHandler} />
+      {loading && <img src={Spinner} />}
+      <main>
+        {facts.length > 0 && (
+          <ListItems
+            facts={facts}
+            pageCount={pageCount}
+            changeFact={changeFactsHandler}
+          />
+        )}
+
+        <PageNav
+          pageCount={pageCount}
+          maxPageCount={Math.ceil(serverFacts.length / 10)}
+          changePage={changePageCountHandler}
+        />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

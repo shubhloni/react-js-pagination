@@ -14,7 +14,7 @@
 }
 
 .btn {
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin: 2px;
   cursor: pointer;
   border-radius: 3px;
@@ -25,15 +25,15 @@
 }
 
 .edit {
-  background-color: rgb(5, 190, 5);
-}
-
-.save {
   background-color: lightblue;
 }
 
+.save {
+  background-color: lightgreen;
+}
+
 .delete {
-  background-color: rgb(252, 65, 65);
+  background-color: salmon;
 }
 
 .btn:hover {

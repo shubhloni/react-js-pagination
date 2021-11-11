@@ -1,7 +1,8 @@
 .footer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  /* align-items: flex-end; */
+  align-items: center;
   margin-top: 10px;
   color: navy;
   background-color: lightblue;

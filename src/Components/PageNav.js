@@ -20,6 +20,7 @@ const PageNav = ({ pageCount, maxPageCount, changePage }) => {
       >
         prev
       </button>
+      <p>{pageCount}</p>
       <button
         className='next'
         onClick={nextPageHandler}

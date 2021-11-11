@@ -4,7 +4,8 @@
 }
 
 .prev,
-.next {
+.next,
+p {
   padding: 5px;
   margin: 10px 10px;
 }

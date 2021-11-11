@@ -1,12 +1,15 @@
 import React from 'react';
 import './Header.css';
 
-const Header = () => {
-  // const location = useLocation();
+import Search from './Search';
 
+const Header = ({ searchFact }) => {
   return (
-    <header className='header'>
-      <h1>React Assessment</h1>
+    <header>
+      <div className='header'>
+        <h1>React Pagination Demo</h1>
+      </div>
+      <Search searchFact={searchFact} />
     </header>
   );
 };
