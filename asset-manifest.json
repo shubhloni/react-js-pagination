@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.936daa8c.chunk.css",
-    "main.js": "/static/js/main.251384fc.chunk.js",
-    "main.js.map": "/static/js/main.251384fc.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.26377081.js",
-    "runtime-main.js.map": "/static/js/runtime-main.26377081.js.map",
-    "static/js/2.f0b4b03e.chunk.js": "/static/js/2.f0b4b03e.chunk.js",
-    "static/js/2.f0b4b03e.chunk.js.map": "/static/js/2.f0b4b03e.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.936daa8c.chunk.css.map": "/static/css/main.936daa8c.chunk.css.map",
-    "static/js/2.f0b4b03e.chunk.js.LICENSE.txt": "/static/js/2.f0b4b03e.chunk.js.LICENSE.txt",
-    "static/media/spinner.0c238a17.gif": "/static/media/spinner.0c238a17.gif"
+    "main.css": "/react-js-pagination/static/css/main.936daa8c.chunk.css",
+    "main.js": "/react-js-pagination/static/js/main.251384fc.chunk.js",
+    "main.js.map": "/react-js-pagination/static/js/main.251384fc.chunk.js.map",
+    "runtime-main.js": "/react-js-pagination/static/js/runtime-main.d1ed4e9d.js",
+    "runtime-main.js.map": "/react-js-pagination/static/js/runtime-main.d1ed4e9d.js.map",
+    "static/js/2.f0b4b03e.chunk.js": "/react-js-pagination/static/js/2.f0b4b03e.chunk.js",
+    "static/js/2.f0b4b03e.chunk.js.map": "/react-js-pagination/static/js/2.f0b4b03e.chunk.js.map",
+    "index.html": "/react-js-pagination/index.html",
+    "static/css/main.936daa8c.chunk.css.map": "/react-js-pagination/static/css/main.936daa8c.chunk.css.map",
+    "static/js/2.f0b4b03e.chunk.js.LICENSE.txt": "/react-js-pagination/static/js/2.f0b4b03e.chunk.js.LICENSE.txt",
+    "static/media/spinner.0c238a17.gif": "/react-js-pagination/static/media/spinner.0c238a17.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.26377081.js",
+    "static/js/runtime-main.d1ed4e9d.js",
     "static/js/2.f0b4b03e.chunk.js",
     "static/css/main.936daa8c.chunk.css",
     "static/js/main.251384fc.chunk.js"
