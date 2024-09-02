@@ -11,7 +11,6 @@ function ListItem({ idx, fact, changeFact }) {
   };
 
   const saveFactHandler = () => {
-    // console.log(textRef.current.value);
     setEditToggle(!editToggle);
     changeFact(fact._id, textRef.current.value);
   };
