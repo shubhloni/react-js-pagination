@@ -36,7 +36,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log((pageCount - 1) * 10, pageCount * 10);
     // const initFacts = DUMMY_FACTS.slice((pageCount - 1) * 10, pageCount * 10);
     const initFacts = serverFacts.slice((pageCount - 1) * 10, pageCount * 10);
     setFacts(() => initFacts);
@@ -92,7 +91,6 @@ function App() {
       });
       setServerFacts(newFacts);
     }
-    // console.log(newFacts);
   };
 
   return (
